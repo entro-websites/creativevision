@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Vision — Fotografisanje i video produkcija venčanja | Srbija i region</title>
+<meta name="description" content="Creative Vision je studio za fotografisanje i video produkciju venčanja i važnih životnih trenutaka. Preko 10 godina iskustva, 200+ realizovanih venčanja u Srbiji i regionu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#115590;
+    --accent-dark:#0b3d69;
+    --accent-darker:#082c4d;
+    --accent-soft:#e9f0f6;
+    --accent-soft-2:#d7e5f0;
+    --accent-glow:rgba(17,85,144,0.22);
+
+    --text:#122232;
+    --text-muted:rgba(18,34,50,0.68);
+    --text-faint:rgba(18,34,50,0.46);
+
+    --bg:#ffffff;
+    --bg-off:#faf8f5;
+
+    --radius-btn:999px;
+    --radius-card:20px;
+    --radius-sm:10px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Cabin', sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;}
+
+  h1,h2,h3{
+    font-family:'Gloock', serif;
+    font-weight:400;
+    color:var(--text);
+    margin:0;
+    line-height:1.15;
+  }
+
+  .wrap{
+    max-width:1280px;
+    margin:0 auto;
+    padding-left:24px;
+    padding-right:24px;
+  }
+  @media (max-width:768px){
+    .wrap{padding-left:20px;padding-right:20px;}
+  }
+
+  .eyebrow{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+
+  p{
+    color:var(--text-muted);
+    line-height:1.7;
+    font-size:17px;
+    max-width:65ch;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:16px 32px;
+    border-radius:var(--radius-btn);
+    font-family:'Cabin', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    box-shadow:0 14px 30px -12px var(--accent-glow);
+  }
+  .btn-primary:hover{
+    background:var(--accent-dark);
+    transform:translateY(-2px);
+    box-shadow:0 18px 36px -12px var(--accent-glow);
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--accent);
+    border-color:var(--accent-soft-2);
+  }
+  .btn-outline:hover{
+    background:var(--accent-soft);
+    transform:translateY(-2px);
+  }
+  .btn-light{
+    background:#fff;
+    color:var(--accent);
+  }
+  .btn-light:hover{
+    background:var(--accent-soft);
+    transform:translateY(-2px);
+  }
+
+  /* Header */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,0.98);
+    border-bottom:1px solid rgba(18,34,50,0.06);
+    transition:box-shadow .3s ease, background .3s ease, backdrop-filter .3s ease;
+  }
+  header.scrolled{
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 8px 24px -18px rgba(18,34,50,0.35);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Gloock', serif;
+    font-size:20px;
+    color:var(--text);
+  }
+  .logo img{
+    width:38px;
+    height:38px;
+    object-fit:contain;
+  }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:36px;
+  }
+  .nav-links a{
+    font-size:15px;
+    font-weight:500;
+    color:var(--text-muted);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{margin-left:8px;}
+
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:44px;
+    height:44px;
+    border:1px solid rgba(18,34,50,0.12);
+    border-radius:var(--radius-sm);
+    background:transparent;
+    cursor:pointer;
+    gap:5px;
+  }
+  .hamburger span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--text);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.active span:nth-child(2){opacity:0;}
+  .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#fff;
+    z-index:99;
+    padding:100px 24px 40px;
+    flex-direction:column;
+    gap:8px;
+    overflow-y:auto;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    font-size:22px;
+    font-family:'Gloock', serif;
+    padding:16px 0;
+    border-bottom:1px solid rgba(18,34,50,0.08);
+    color:var(--text);
+  }
+  .mobile-menu .btn{margin-top:24px;width:100%;}
+
+  @media (max-width:991px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+  }
+
+  /* Hero */
+  .hero{
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:88vh;
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('assets/creative-vision-produkcija-3.jpg');
+    background-size:cover;
+    background-position:center 30%;
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(8,32,55,0.55) 0%, rgba(8,32,55,0.72) 55%, rgba(8,32,55,0.88) 100%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    max-width:720px;
+    padding-top:80px;
+    padding-bottom:80px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(38px, 6vw, 68px);
+    margin-bottom:22px;
+  }
+  .hero p{
+    color:rgba(255,255,255,0.88);
+    font-size:19px;
+    max-width:52ch;
+    margin-bottom:36px;
+  }
+
+  /* Section base */
+  section{
+    padding-top:96px;
+    padding-bottom:96px;
+  }
+  @media (max-width:768px){
+    section{padding-top:64px;padding-bottom:64px;}
+  }
+  .section-off{background:var(--bg-off);}
+
+  .section-head{
+    max-width:680px;
+    margin-bottom:56px;
+  }
+  .section-head p{max-width:60ch;}
+  .section-head.center{
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+  }
+  .section-head.center p{margin-left:auto;margin-right:auto;}
+
+  /* Reveal animation */
+  .reveal{
+    opacity:1;
+    transform:translateY(14px);
+    transition:transform .7s cubic-bezier(.2,.7,.3,1), opacity .7s ease;
+  }
+  .reveal.in-view{
+    transform:translateY(0);
+  }
+
+  /* Bol uvod */
+  .pain{
+    background:var(--accent-soft);
+    text-align:center;
+  }
+  .pain .wrap{max-width:820px;}
+  .pain p{
+    font-size:19px;
+    color:var(--text);
+    max-width:none;
+    margin:0 auto;
+  }
+
+  /* Services */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:28px;
+  }
+  .service-card{
+    background:#fff;
+    border:1px solid rgba(18,34,50,0.08);
+    border-radius:var(--radius-card);
+    padding:40px 34px;
+    transition:box-shadow .3s ease, transform .3s ease;
+  }
+  .service-card:hover{
+    box-shadow:0 24px 48px -28px rgba(18,34,50,0.28);
+    transform:translateY(-4px);
+  }
+  .icon-badge{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:24px;
+  }
+  .icon-badge svg{width:26px;height:26px;stroke:var(--accent);}
+  .service-card h3{
+    font-size:24px;
+    margin-bottom:14px;
+  }
+  .service-card p{font-size:16px;margin:0;}
+
+  @media (max-width:768px){
+    .services-grid{grid-template-columns:1fr;}
+  }
+
+  /* Process */
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:32px;
+    margin-top:56px;
+  }
+  .process-step .num{
+    font-family:'Gloock', serif;
+    font-size:36px;
+    color:var(--accent-soft-2);
+    margin-bottom:10px;
+    display:block;
+  }
+  .process-step h3{font-size:19px;margin-bottom:10px;}
+  .process-step p{font-size:15.5px;}
+  @media (max-width:768px){
+    .process-grid{grid-template-columns:1fr;gap:36px;}
+  }
+
+  /* Gallery */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  .gallery-item{
+    position:relative;
+    border-radius:var(--radius-sm);
+    overflow:hidden;
+    aspect-ratio:4/5;
+    background:var(--accent-soft);
+  }
+  .gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .gallery-item:hover img{transform:scale(1.06);}
+
+  @media (max-width:768px){
+    .gallery-grid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:480px){
+    .gallery-grid{grid-template-columns:1fr;}
+  }
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-photo{
+    aspect-ratio:4/5;
+    border-radius:var(--radius-card);
+    background:var(--accent-soft-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--accent);
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:24px;
+  }
+  .about-text p{margin-bottom:20px;}
+  .press-row{
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid rgba(18,34,50,0.1);
+  }
+  .press-row span{
+    display:block;
+    font-size:13px;
+    color:var(--text-faint);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .press-logos{
+    display:flex;
+    align-items:center;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .press-logos img{
+    height:22px;
+    width:auto;
+    filter:grayscale(100%);
+    opacity:0.65;
+  }
+
+  @media (max-width:768px){
+    .about-grid{grid-template-columns:1fr;gap:36px;}
+  }
+
+  /* Stats */
+  .stats-band{
+    background:var(--accent-darker);
+    color:#fff;
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:40px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Gloock', serif;
+    font-size:clamp(44px, 6vw, 64px);
+    color:#fff;
+    margin-bottom:8px;
+  }
+  .stat-label{
+    color:rgba(255,255,255,0.72);
+    font-size:16px;
+  }
+  @media (max-width:768px){
+    .stats-grid{grid-template-columns:1fr;gap:32px;}
+  }
+
+  /* Contact */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+  }
+  .contact-info{
+    background:var(--accent-soft);
+    border-radius:var(--radius-card);
+    padding:44px 36px;
+  }
+  .contact-info h3{font-size:22px;margin-bottom:16px;}
+  .info-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-top:22px;
+  }
+  .info-row svg{
+    width:22px;
+    height:22px;
+    stroke:var(--accent);
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .info-row div{font-size:15.5px;color:var(--text-muted);}
+  .info-row strong{display:block;color:var(--text);font-weight:600;margin-bottom:2px;}
+
+  .contact-form{
+    background:#fff;
+    border:1px solid rgba(18,34,50,0.08);
+    border-radius:var(--radius-card);
+    padding:44px 36px;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .field{
+    margin-bottom:18px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .field label{
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+  }
+  .field input,
+  .field textarea{
+    font-family:'Cabin', sans-serif;
+    font-size:15.5px;
+    padding:13px 16px;
+    border:1px solid rgba(18,34,50,0.16);
+    border-radius:var(--radius-sm);
+    background:var(--bg-off);
+    color:var(--text);
+    outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus,
+  .field textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  .field textarea{resize:vertical;min-height:110px;}
+  .contact-form .btn{width:100%;margin-top:6px;}
+
+  @media (max-width:768px){
+    .contact-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+  }
+
+  /* Final CTA */
+  .final-cta{
+    text-align:center;
+    background:linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color:#fff;
+    border-radius:var(--radius-card);
+    padding:64px 32px;
+    margin-top:0;
+  }
+  .final-cta h2{color:#fff;margin-bottom:16px;}
+  .final-cta p{color:rgba(255,255,255,0.85);margin:0 auto 32px;max-width:52ch;}
+
+  /* Footer */
+  footer{
+    background:var(--text);
+    color:rgba(255,255,255,0.75);
+    padding-top:56px;
+    padding-bottom:32px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:32px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+    flex-wrap:wrap;
+  }
+  .footer-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Gloock', serif;
+    font-size:20px;
+    color:#fff;
+  }
+  .footer-logo img{width:34px;height:34px;object-fit:contain;}
+  .footer-nav{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .footer-nav a{font-size:14.5px;color:rgba(255,255,255,0.7);}
+  .footer-nav a:hover{color:#fff;}
+  .footer-bottom{
+    padding-top:24px;
+    font-size:13.5px;
+    color:rgba(255,255,255,0.45);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+
+  <header id="site-header">
+    <div class="wrap nav-inner">
+      <a href="#" class="logo">
+        <img src="assets/cv1-Recovered-1.png" alt="Creative Vision logo">
+        Creative Vision
+      </a>
+      <nav class="nav-links">
+        <a href="#usluge">Usluge</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#o-nama">O nama</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#kontakt" class="btn btn-primary nav-cta">Zakaži termin</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Otvori meni">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#usluge">Usluge</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#o-nama">O nama</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="btn btn-primary">Zakaži termin za venčanje</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg" role="img" aria-label="Mladenci zagrljeni na steni usred jezera tokom fotografisanja venčanja"></div>
+    <div class="hero-overlay"></div>
+    <div class="wrap">
+      <div class="hero-content">
+        <h1>Venčanje se dešava jednom. Kadrovi ostaju zauvek.</h1>
+        <p>Snimam venčanja u Srbiji i regionu, fotografiju i video u istom paketu. Ti uživaš u danu, ja se pobrinem da svaki trenutak ostane zabeležen.</p>
+        <a href="#kontakt" class="btn btn-primary">Zakaži termin za venčanje</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain">
+    <div class="wrap">
+      <p class="reveal">Znaš onaj osećaj: hoćeš da ceo dan venčanja bude zabeležen, ali ne želiš da razmišljaš o tome ko drži kameru dok pozdravljaš goste. Muzika svira, emocije rastu, a ti samo želiš da budeš prisutan u trenutku. Ja tada preuzimam kameru i brigu oko kadrova, tako da posle venčanja imaš snimke kojima se vraćaš godinama unazad.</p>
+    </div>
+  </section>
+
+  <section id="usluge">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ponuda</span>
+        <h2>Šta dobijaš kad me pozoveš na venčanje</h2>
+        <p>Fotografija i video rade zajedno, ne kao dve odvojene ekipe koje se sudaraju u istom kadru.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h3l2-2h6l2 2h3v11H4z"></path>
+              <circle cx="12" cy="13" r="3.5"></circle>
+            </svg>
+          </div>
+          <h3>Fotografisanje venčanja</h3>
+          <p>Pratim pripremu mladenaca, dolazak gostiju, obred i veselje do kasno u noć. Posle venčanja dobijaš stotine obrađenih fotografija u visokoj rezoluciji, spremnih za štampu i deljenje sa porodicom.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7.5h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3z"></path>
+              <path d="M15 10l6-3v10l-6-3"></path>
+            </svg>
+          </div>
+          <h3>Video produkcija venčanja</h3>
+          <p>Snimam ceremoniju, zavete, prve plesove i govore kumova. Montiram film koji možeš da pogledaš sa porodicom već nedelju dana posle venčanja, bez čekanja mesecima.</p>
+        </div>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <span class="num">01</span>
+          <h3>Upoznavanje i termin</h3>
+          <p>Javiš mi datum i lokaciju venčanja, dogovorimo paket koji ti odgovara.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="num">02</span>
+          <h3>Dan venčanja</h3>
+          <p>Dolazim pre početka priprema i ostajem do kraja veselja, bez žurbe i bez propuštenih trenutaka.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="num">03</span>
+          <h3>Obrada i isporuka</h3>
+          <p>Obrađujem fotografije i montiram film, dobijaš sve u dogovorenom roku, spremno za deljenje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="section-off">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Portfolio</span>
+        <h2>Pogledaj kako izgledaju venčanja koja sam snimio</h2>
+        <p>Izbor kadrova iz poslednjih sezona, iz cele Srbije i regiona - venčanja, ali i drugi važni životni trenuci.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="assets/creative-vision-produkcija-1.jpg" alt="Mladenci silaze niz mermerne stepenice tokom fotografisanja venčanja">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/creative-vision-produkcija-2.jpg" alt="Mladoženja ljubi mladu u čelo na venčanju u prirodi">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/creative-vision-produkcija-3.jpg" alt="Mladenci zagrljeni na steni usred jezera, venčanje na otvorenom">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/creative-vision-produkcija-6.jpg" alt="Majka podiže bebu u zagrljaj tokom porodičnog fotografisanja">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/creative-vision.jpg" alt="Devojka drži tortu sa natpisom dobrodošlice u dvadesete, fotografisanje rođendana">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/creative-vision-produkcija-4.jpg" alt="Roditelj drži bebine stopalce, fotografisanje novorođenčeta">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nama">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-photo reveal">FOTOGRAFIJA EKIPE CREATIVE VISION</div>
+        <div class="about-text reveal">
+          <span class="eyebrow">O studiju</span>
+          <h2>Iza kamere, čovek koji zna šta radi</h2>
+          <p>Creative Vision je studio za fotografisanje i video produkciju venčanja i važnih životnih trenutaka, sa radom u Srbiji i regionu. Radim lično, bez glomazne ekipe i improvizacije na dan snimanja.</p>
+          <p>Svaki kadar biram tako da izgleda elegantno i da ne izgleda zastarelo za deset godina. Volim venčanja jer je to jedan od retkih dana kad je cela porodica na jednom mestu, nasmejana i opuštena - moj posao je da to ostane zabeleženo tačno onako kako se osećalo.</p>
+          <div class="press-row">
+            <span>Radovi su se našli na stranicama</span>
+            <div class="press-logos">
+              <img src="assets/logo.jpg" alt="Logo magazina Vogue Korea">
+              <img src="assets/hello-magazin-logo.jpg" alt="Logo magazina Hello!">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band">
+    <div class="wrap">
+      <div class="section-head center reveal" style="margin-bottom:48px;">
+        <span class="eyebrow" style="color:#cfe0ee;">Brojke</span>
+        <h2 style="color:#fff;">Iskustvo koje se vidi u svakom kadru</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="reveal">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">godina iskustva u fotografisanju i snimanju venčanja</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">realizovanih venčanja i projekata širom Srbije i regiona</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section-off">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Zakaži termin za svoje venčanje</h2>
+        <p>Pošalji datum venčanja i lokaciju, javljam se u toku dana sa ponudom i dostupnošću za taj datum.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Kako da me nađeš</h3>
+          <p style="font-size:15px;">Radim venčanja i druge važne životne trenutke širom Srbije i regiona, na lokaciji koju ti izabereš.</p>
+
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M3 6l9 6 9-6"></path><path d="M3 6h18v12H3z"></path></svg>
+            <div><strong>Email</strong>info@creativevision.rs</div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            <div><strong>Područje rada</strong>Srbija i region</div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+            <div><strong>Odgovor</strong>U toku istog dana</div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" action="#" method="post">
+          <div class="form-row">
+            <div class="field">
+              <label for="ime">Ime i prezime</label>
+              <input type="text" id="ime" name="ime" placeholder="Tvoje ime i prezime" required>
+            </div>
+            <div class="field">
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="06X XXX XXXX" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="tvojemail@primer.com" required>
+            </div>
+            <div class="field">
+              <label for="datum">Datum venčanja</label>
+              <input type="date" id="datum" name="datum">
+            </div>
+          </div>
+          <div class="field">
+            <label for="poruka">Poruka</label>
+            <textarea id="poruka" name="poruka" placeholder="Reci mi lokaciju venčanja i broj gostiju"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Pošalji upit za termin</button>
+        </form>
+      </div>
+
+      <div class="final-cta reveal" style="margin-top:80px;">
+        <h2>Ne čekaj poslednji trenutak</h2>
+        <p>Termini se popunjavaju sezonu unapred. Javi se sada i obezbedi datum svog venčanja.</p>
+        <a href="#kontakt" class="btn btn-light" onclick="document.getElementById('ime').focus()">Zakaži termin za venčanje</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a href="#" class="footer-logo">
+          <img src="assets/cv1-Recovered-1.png" alt="Creative Vision logo">
+          Creative Vision
+        </a>
+        <nav class="footer-nav">
+          <a href="#usluge">Usluge</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#o-nama">O nama</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Creative Vision. Sva prava zadržana.</span>
+        <span>Fotografisanje i video produkcija venčanja - Srbija i region</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 12) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => observer.observe(el));
+    }
+  </script>
+
+</body>
+</html>
